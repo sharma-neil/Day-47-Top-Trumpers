@@ -12,11 +12,18 @@ def create_card():
   while True:
     build = input("Do you want to build a card: (y/n)")
     if build == "y":
-        name = input("Name: ")
-        intelligence = int(input("Intelligence: "))
-        speed = int(input("Speed: "))
-        guile = int(input("Guile: "))
-        baldness = int(input("Baldness Level: "))
+        while True:
+            try:
+                name = input("Name: ")
+                intelligence = int(input("Intelligence: "))
+                speed = int(input("Speed: "))
+                guile = int(input("Guile: "))
+                baldness = int(input("Baldness Level: "))
+            except ValueError:
+                print("Make sure intelligence, speed, guile and baldness are integers")
+                continue
+            else:
+                break
         trumps[name] = {"Intelligence": intelligence, "Speed": speed, "Guile": guile, "Baldness Level": baldness}
     else:
         print("Very well! Let's continue\n")
@@ -69,8 +76,7 @@ while True:
         else:
             print(f"It's a tie!")
     elif q_1_or_2 == "2":
-        q_build_card = ""
-        create_card(q_build_card)
+        create_card()
         
         p1_choice, p1_key = user_choices()
         p2_choice, p2_key = user_choices()
